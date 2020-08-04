@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { CategoryDialogComponent } from './components/category-dialog/category-dialog.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    CategoryDialogComponent
   ],
   imports: [
     CommonModule,

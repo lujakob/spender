@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Add category</h2>
+<mat-dialog-content>
+	<form autocomplete="off">
+		<input style="position: absolute; top: -10000000px;">
+		<mat-form-field>
+			<mat-label>Name</mat-label>
+			<input matInput [formControl]="name" required>
+		</mat-form-field>
+	</form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close>Cancel</button>
+	<button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="name.pristine || name.invalid" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

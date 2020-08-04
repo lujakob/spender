@@ -7,6 +7,7 @@ import { FrameComponent } from './components/frame/frame.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     MatToolbarModule,
     MatButtonModule
