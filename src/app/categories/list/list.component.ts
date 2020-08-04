@@ -3,6 +3,7 @@ import { Category } from '../../interfaces/category.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from '../components/category-dialog/category-dialog.component';
 import { ConfirmDialogData, ConfirmDialogService } from '../../shared/services/confirm-dialog.service';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
   selector: 'app-list',
@@ -11,23 +12,28 @@ import { ConfirmDialogData, ConfirmDialogService } from '../../shared/services/c
 })
 export class ListComponent implements OnInit {
 
-  categories: Category[] = [
-    {
-      id: 0,
-      name: 'Kaffeehaus',
-    },
-    {
-      id: 1,
-      name: 'Lebensmittel',
-    }
-  ];
+  categories: Category[];
 
   constructor(
     public dialog: MatDialog,
-    private confirm: ConfirmDialogService
+    private confirm: ConfirmDialogService,
+    private dbService: NgxIndexedDBService
   ) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll() {
+    this.dbService.getAll('categories').then(
+      (categories: Category[]) => {
+        console.log(categories);
+        this.categories = categories;
+      },
+      error => {
+        console.log('Could not fetch categories:', error);
+      }
+    );
   }
 
   onAdd() {
@@ -36,7 +42,10 @@ export class ListComponent implements OnInit {
       .afterClosed().subscribe((name: string) => {
         console.log(`Dialog result: ${name}`);
         if (name) {
-          this.categories.push({id: 2, name});
+          this.dbService.add('categories', { name }).then(
+            () => this.getAll(),
+            error => console.log(error)
+          );
         }
       });
   }
@@ -50,6 +59,10 @@ export class ListComponent implements OnInit {
 
     this.confirm.open(data).affirm(() => {
       console.log("delete", id);
+      this.dbService.delete('categories', id).then(
+        () => this.getAll(),
+        error => console.log('Could not delete', error)
+      );
     });
   }
 }

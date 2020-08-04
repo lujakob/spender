@@ -8,6 +8,19 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+
+const dbConfig: DBConfig  = {
+  name: 'spender',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'categories',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'name', keypath: 'name', options: { unique: false } }
+    ]
+  }]
+};
 
 const routes: Routes = [
   {
@@ -41,6 +54,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    NgxIndexedDBModule.forRoot(dbConfig),
     MatToolbarModule,
     MatButtonModule
   ],
