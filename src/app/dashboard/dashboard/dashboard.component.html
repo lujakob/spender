@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="dashboard-toolbar">
+	<app-period-selector></app-period-selector>
+</div>
+<div class="content list-content">
+	<mat-list>
+		<mat-list-item *ngFor="let item of res">
+			<span class="name">{{item.categoryName}}</span>
+			<div class="spacer"></div>
+			<span class="total">
+				{{(item.total  / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}
+			</span>
+		</mat-list-item>
+		<mat-list-item *ngIf="resNoCats?.total">
+			<span class="name">no category</span>
+			<div class="spacer"></div>
+			<span class="total">
+				{{(resNoCats.total  / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}
+			</span>
+		</mat-list-item>
+	</mat-list>
+</div>

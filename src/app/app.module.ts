@@ -39,14 +39,14 @@ const routes: Routes = [
     path: '',
     component: FrameComponent,
     children: [
-      // {
-      //   path: '',
-      //   loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      // },
       {
         path: '',
-        redirectTo: 'spendings',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'spendings',

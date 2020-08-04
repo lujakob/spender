@@ -1,0 +1,9 @@
+<div class="wrapper" *ngIf="options" [ngClass]="{month: range === 'month', year: range === 'year'}">
+	<button mat-icon-button (click)="onPrev()" class="prev" [disabled]="selectedIsFirst" [disableRipple]="true">
+		<mat-icon>keyboard_arrow_left</mat-icon>
+	</button>
+	<div class="title">{{options[selected]?.title}}</div>
+	<button mat-icon-button (click)="onNext()" class="next" [disabled]="selectedIsLast" [disableRipple]="true">
+		<mat-icon>keyboard_arrow_right</mat-icon>
+	</button>
+</div>

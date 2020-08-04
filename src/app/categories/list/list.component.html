@@ -4,7 +4,7 @@
 	<button mat-icon-button (click)="onAdd()"><mat-icon>add</mat-icon></button>
 </mat-toolbar>
 
-<div class="content">
+<div class="content list-content">
 	<ng-container *ngIf="categories$ | async as categories">
 		<mat-list>
 			<mat-list-item *ngFor="let c of categories">

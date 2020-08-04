@@ -4,13 +4,13 @@
 	<button mat-icon-button (click)="onAdd()"><mat-icon>add</mat-icon></button>
 </mat-toolbar>
 
-<div class="content">
+<div class="content list-content">
 	<ng-container *ngIf="spendings$ | async as spendings">
 		<mat-list>
 			<mat-list-item *ngFor="let s of spendings">
 				<span class="date">{{s.createdAt | date:'dd.MM.yyyy'}}</span>
 				<span class="amount">{{ (s.amount / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}</span>
-				<span class="category-name">{{s?.category?.name}}</span>
+				<span class="category-name truncate">{{s?.category?.name}}</span>
 
 				<div class="spacer"></div>
 				<button mat-icon-button (click)="onDelete(s.id)"><mat-icon>delete</mat-icon></button>

@@ -1,0 +1,33 @@
+:host {
+  height: 100%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &.year {
+    width: 160px;
+  }
+}
+
+.prev {
+  align-self: flex-start;
+}
+
+.next {
+  align-self: flex-end;
+}
+
+.title {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  padding-top: 1px;
+}
+
+.mat-icon-button {
+  height: 100%;
+  width: 50px;
+}
+

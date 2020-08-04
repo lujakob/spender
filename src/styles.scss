@@ -19,7 +19,13 @@ html, body {
 }
 
 .content {
-  padding: 16px;
+  &:not(.list-content) {
+    padding: 16px;
+  }
+
+  @media(min-width: 600px) {
+    padding: 16px;
+  }
 }
 
 .content-toolbar {
@@ -41,4 +47,17 @@ html, body {
 
 .mat-form-field {
   width: 100%;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-list-base {
+  padding-top: 0 !important;
+  .mat-list-item {
+    height: 54px !important;
+  }
 }

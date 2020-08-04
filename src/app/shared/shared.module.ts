@@ -13,10 +13,12 @@ import { ConfirmDialogService } from './services/confirm-dialog.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PeriodSelectorComponent } from './components/date-range/period-selector.component';
 
 @NgModule({
   declarations: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PeriodSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
+    PeriodSelectorComponent,
   ],
   providers: [
     ConfirmDialogService

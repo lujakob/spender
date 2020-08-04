@@ -12,14 +12,12 @@ export class SpendingService {
   private readonly storeName = 'spending';
 
   constructor(private dbService: NgxIndexedDBService) {
-    console.log("jooo");
     this.getAll();
   }
 
   getAll() {
     this.dbService.getAll(this.storeName).then(
       (spendings: Spending[]) => {
-        console.log(spendings);
         this.spendings$.next(spendings);
       },
       error => console.log('Could not fetch spendings:', error)
