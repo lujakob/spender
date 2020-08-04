@@ -3,7 +3,8 @@ import { Category } from '../../interfaces/category.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from '../components/category-dialog/category-dialog.component';
 import { ConfirmDialogData, ConfirmDialogService } from '../../shared/services/confirm-dialog.service';
-import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { CategoryService } from '../../shared/services/category.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -12,40 +13,25 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 })
 export class ListComponent implements OnInit {
 
-  categories: Category[];
+  categories$: BehaviorSubject<Category[]>;
 
   constructor(
     public dialog: MatDialog,
     private confirm: ConfirmDialogService,
-    private dbService: NgxIndexedDBService
-  ) { }
-
-  ngOnInit(): void {
-    this.getAll();
+    private categoryService: CategoryService
+  ) {
+    this.categories$ = this.categoryService.categories$;
   }
 
-  getAll() {
-    this.dbService.getAll('categories').then(
-      (categories: Category[]) => {
-        console.log(categories);
-        this.categories = categories;
-      },
-      error => {
-        console.log('Could not fetch categories:', error);
-      }
-    );
+  ngOnInit(): void {
   }
 
   onAdd() {
     this.dialog
       .open(CategoryDialogComponent, {restoreFocus: true})
       .afterClosed().subscribe((name: string) => {
-        console.log(`Dialog result: ${name}`);
         if (name) {
-          this.dbService.add('categories', { name }).then(
-            () => this.getAll(),
-            error => console.log(error)
-          );
+          this.categoryService.add({name});
         }
       });
   }
@@ -58,11 +44,7 @@ export class ListComponent implements OnInit {
     } as ConfirmDialogData;
 
     this.confirm.open(data).affirm(() => {
-      console.log("delete", id);
-      this.dbService.delete('categories', id).then(
-        () => this.getAll(),
-        error => console.log('Could not delete', error)
-      );
+      this.categoryService.delete(id);
     });
   }
 }

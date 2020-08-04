@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from './services/confirm-dialog.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ConfirmDialogService } from './services/confirm-dialog.service';
     MatIconModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     FormsModule,
@@ -37,6 +43,8 @@ import { ConfirmDialogService } from './services/confirm-dialog.service';
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
   ],
   providers: [
     ConfirmDialogService

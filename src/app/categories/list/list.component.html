@@ -5,11 +5,16 @@
 </mat-toolbar>
 
 <div class="content">
-	<mat-list>
-		<mat-list-item *ngFor="let c of categories">
-			{{c.name}}
-			<div class="spacer"></div>
-			<button mat-icon-button (click)="onDelete(c.id)"><mat-icon>delete</mat-icon></button>
-		</mat-list-item>
-	</mat-list>
+	<ng-container *ngIf="categories$ | async as categories">
+		<mat-list>
+			<mat-list-item *ngFor="let c of categories">
+				{{c.name}}
+				<div class="spacer"></div>
+				<button mat-icon-button (click)="onDelete(c.id)"><mat-icon>delete</mat-icon></button>
+			</mat-list-item>
+		</mat-list>
+
+		<div class="empty-list" *ngIf="categories.length === 0">This list is empty.</div>
+	</ng-container>
+
 </div>
