@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '_colors';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.spacer {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content-toolbar {
+
+}
+
+.mat-list-item {
+  border-bottom: 1px solid $light-grey;
+
+  &:first-child {
+    border-top: 1px solid $light-grey;
+  }
+}

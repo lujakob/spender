@@ -30,6 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/theme"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -123,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "spender"
+    }
+  },
+  "defaultProject": "spender",
+  "cli": {
+    "analytics": false
+  }
 }
