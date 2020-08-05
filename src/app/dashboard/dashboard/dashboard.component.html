@@ -1,21 +1,47 @@
-<div class="dashboard-toolbar">
+<div class="dashboard-toolbar mat-elevation-z2">
 	<app-period-selector></app-period-selector>
 </div>
-<div class="content list-content">
-	<mat-list>
-		<mat-list-item *ngFor="let item of res">
-			<span class="name">{{item.categoryName}}</span>
-			<div class="spacer"></div>
-			<span class="total">
-				{{(item.total  / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}
+<div class="content">
+	<mat-card>
+		<mat-card-title>Spendings per category</mat-card-title>
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let item of categoryData">
+					<span class="name">{{item.categoryName}}</span>
+					<div class="spacer"></div>
+					<span class="total">
+				<app-amount [amount]="item.total"></app-amount>
 			</span>
-		</mat-list-item>
-		<mat-list-item *ngIf="resNoCats?.total">
-			<span class="name">no category</span>
-			<div class="spacer"></div>
-			<span class="total">
-				{{(resNoCats.total  / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}
+				</mat-list-item>
+				<mat-list-item *ngIf="noCategoryData?.total">
+					<span class="name">no category</span>
+					<div class="spacer"></div>
+					<span class="total">
+				<app-amount [amount]="noCategoryData.total"></app-amount>
 			</span>
-		</mat-list-item>
-	</mat-list>
+				</mat-list-item>
+				<mat-list-item>
+					<span class="name">This month</span>
+					<div class="spacer"></div>
+					<span class="total">
+				<app-amount [amount]="totalThisMonth"></app-amount>
+			</span>
+				</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+	</mat-card>
+
+	<mat-card class="no-margin-bottom">
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item>
+					<span class="name">This month</span>
+					<div class="spacer"></div>
+					<span class="total">
+						<app-amount [amount]="totalThisMonth"></app-amount>
+					</span>
+				</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+	</mat-card>
 </div>

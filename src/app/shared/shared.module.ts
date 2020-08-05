@@ -14,11 +14,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PeriodSelectorComponent } from './components/date-range/period-selector.component';
+import { AmountComponent } from './components/amount/amount.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
-    PeriodSelectorComponent
+    PeriodSelectorComponent,
+    AmountComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { PeriodSelectorComponent } from './components/date-range/period-selector
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
   ],
   exports: [
     FormsModule,
@@ -47,7 +51,9 @@ import { PeriodSelectorComponent } from './components/date-range/period-selector
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatCardModule,
     PeriodSelectorComponent,
+    AmountComponent,
   ],
   providers: [
     ConfirmDialogService

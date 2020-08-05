@@ -1,20 +1,21 @@
-<mat-toolbar>
+<mat-toolbar class="mat-elevation-z2">
 	<div class="title">Categories</div>
 	<div class="spacer"></div>
 	<button mat-icon-button (click)="onAdd()"><mat-icon>add</mat-icon></button>
 </mat-toolbar>
 
-<div class="content list-content">
-	<ng-container *ngIf="categories$ | async as categories">
-		<mat-list>
-			<mat-list-item *ngFor="let c of categories">
-				{{c.name}}
-				<div class="spacer"></div>
-				<button mat-icon-button (click)="onDelete(c.id)"><mat-icon>delete</mat-icon></button>
-			</mat-list-item>
-		</mat-list>
+<div class="content">
+	<mat-card *ngIf="categories$ | async as categories">
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let c of categories">
+					{{c.name}}
+					<div class="spacer"></div>
+					<button mat-icon-button (click)="onDelete(c.id)"><mat-icon>delete</mat-icon></button>
+				</mat-list-item>
+			</mat-list>
 
-		<div class="empty-list" *ngIf="categories.length === 0">This list is empty.</div>
-	</ng-container>
-
+			<div class="empty-list" *ngIf="categories.length === 0">This list is empty.</div>
+		</mat-card-content>
+	</mat-card>
 </div>

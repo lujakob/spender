@@ -1,23 +1,25 @@
-<mat-toolbar>
+<mat-toolbar class="mat-elevation-z2">
 	<div class="title">Spendings</div>
 	<div class="spacer"></div>
 	<button mat-icon-button (click)="onAdd()"><mat-icon>add</mat-icon></button>
 </mat-toolbar>
 
-<div class="content list-content">
-	<ng-container *ngIf="spendings$ | async as spendings">
-		<mat-list>
-			<mat-list-item *ngFor="let s of spendings">
-				<span class="date">{{s.createdAt | date:'dd.MM.yyyy'}}</span>
-				<span class="amount">{{ (s.amount / 100) | currency:'EUR':'symbol': '1.2-2':'de-DE'}}</span>
-				<span class="category-name truncate">{{s?.category?.name}}</span>
+<div class="content">
+	<mat-card *ngIf="spendings$ | async as spendings">
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let s of spendings">
+					<span class="date">{{s.createdAt | date:'dd.MM.yyyy'}}</span>
+					<span class="amount"><app-amount [amount]="s.amount"></app-amount></span>
+					<span class="category-name truncate">{{s?.category?.name}}</span>
 
-				<div class="spacer"></div>
-				<button mat-icon-button (click)="onDelete(s.id)"><mat-icon>delete</mat-icon></button>
-			</mat-list-item>
-		</mat-list>
+					<div class="spacer"></div>
+					<button mat-icon-button (click)="onDelete(s.id)"><mat-icon>delete</mat-icon></button>
+				</mat-list-item>
+			</mat-list>
 
-		<div class="empty-list" *ngIf="spendings.length === 0">This list is empty.</div>
-	</ng-container>
+			<div class="empty-list" *ngIf="spendings.length === 0">This list is empty.</div>
+		</mat-card-content>
+	</mat-card>
 
 </div>
