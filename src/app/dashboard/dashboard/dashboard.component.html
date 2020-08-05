@@ -9,23 +9,12 @@
 				<mat-list-item *ngFor="let item of categoryData">
 					<span class="name">{{item.categoryName}}</span>
 					<div class="spacer"></div>
-					<span class="total">
-				<app-amount [amount]="item.total"></app-amount>
-			</span>
+					<span class="total"><app-amount [amount]="item.total"></app-amount></span>
 				</mat-list-item>
 				<mat-list-item *ngIf="noCategoryData?.total">
 					<span class="name">no category</span>
 					<div class="spacer"></div>
-					<span class="total">
-				<app-amount [amount]="noCategoryData.total"></app-amount>
-			</span>
-				</mat-list-item>
-				<mat-list-item>
-					<span class="name">This month</span>
-					<div class="spacer"></div>
-					<span class="total">
-				<app-amount [amount]="totalThisMonth"></app-amount>
-			</span>
+					<span class="total"><app-amount [amount]="noCategoryData.total"></app-amount></span>
 				</mat-list-item>
 			</mat-list>
 		</mat-card-content>
