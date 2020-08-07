@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [
     ConfirmDialogComponent,
     PeriodSelectorComponent,
-    AmountComponent
+    AmountComponent,
   ],
   imports: [
     CommonModule,
