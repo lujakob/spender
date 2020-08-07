@@ -4,7 +4,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from '../../../shared/services/category.service';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from '../../../interfaces/category.interface';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-spending-dialog',

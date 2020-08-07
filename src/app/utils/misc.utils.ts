@@ -27,9 +27,10 @@ export const sortByDateDesc = (spendings: Spending[]) => spendings.sort((a, b) =
 export const filterByRange = (params, spendings) => {
   const currentDate = !!params['period'] ? new Date(params['period']) : new Date();
   const startMom = moment(currentDate).startOf('month');
-  const endMom = startMom.clone().add(1, 'month');
+  const rangeStart = startMom.clone().subtract(1, 'minute');
+  const rangeEnd = startMom.clone().add(1, 'month');
   return spendings.filter((s: Spending) => {
-    return s.createdAt > startMom.toDate() && s.createdAt < endMom.toDate();
+    return moment(s.createdAt).isAfter(rangeStart) && moment(s.createdAt).isBefore(rangeEnd);
   });
 };
 
