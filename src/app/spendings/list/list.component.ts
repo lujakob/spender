@@ -4,7 +4,7 @@ import { Spending } from '../../interfaces/spending.interface';
 import { ConfirmDialogData, ConfirmDialogService } from '../../shared/services/confirm-dialog.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SpendingService } from '../../shared/services/spending.service';
-import { SpendingDialogComponent } from '../components/spending-dialog/spending-dialog.component';
+import { SpendingDialogComponent } from '../../shared/components/spending-dialog/spending-dialog.component';
 import { CategoryService } from '../../shared/services/category.service';
 import { Category } from '../../interfaces/category.interface';
 import { filter, map } from 'rxjs/operators';

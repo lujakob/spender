@@ -7,6 +7,14 @@ import { SpendingService } from '../../shared/services/spending.service';
 import { ActivatedRoute } from '@angular/router';
 import { Spending } from '../../interfaces/spending.interface';
 import { filterByRange, sortByTotal } from '../../utils/misc.utils';
+import { SpendingDialogComponent } from '../../shared/components/spending-dialog/spending-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
+interface CategoryData {
+  categoryId?: number;
+  categoryName?: string;
+  total: number;
+}
 
 export const getTotal = arr => arr.reduce((acc, curr) => acc + curr.total, 0);
 
@@ -17,14 +25,15 @@ export const getTotal = arr => arr.reduce((acc, curr) => acc + curr.total, 0);
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   categories: Category[];
-  categoryData: any;
-  noCategoryData: any;
+  categoryData: CategoryData[];
+  noCategoryData: CategoryData;
   totalThisMonth = 0;
 
   destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private categoryService: CategoryService,
     private spendingService: SpendingService,
   ) { }
@@ -55,6 +64,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.categoryData = sortByTotal(categoryData);
       this.noCategoryData = noCategoryData;
       this.totalThisMonth = getTotal(this.categoryData) + this.noCategoryData.total;
+    });
+  }
+
+  onAddSpending({categoryId, categoryName}: CategoryData) {
+    this.dialog
+      .open(SpendingDialogComponent, {restoreFocus: true, data: {categoryId, categoryName}})
+      .afterClosed().subscribe((data: any) => {
+      if (data) {
+        this.spendingService.add(data);
+      }
     });
   }
 
